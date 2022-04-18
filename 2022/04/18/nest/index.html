@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>golang接口和结构体的三种嵌套 | 鸽子壹</title>
+
+
+
+    <link rel="icon" href="/pigeon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 6.1.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            鸽子壹.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about">About</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                golang接口和结构体的三种嵌套
+            
+            
+        </div>
+        <span class="post-date">
+            Apr 18, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h2 id="golang接口和结构体的三种嵌套"><a href="#golang接口和结构体的三种嵌套" class="headerlink" title="golang接口和结构体的三种嵌套"></a>golang接口和结构体的三种嵌套</h2><h3 id="1-结构体嵌套结构体（struct-struct）"><a href="#1-结构体嵌套结构体（struct-struct）" class="headerlink" title="1.结构体嵌套结构体（struct,struct）"></a>1.结构体嵌套结构体（struct,struct）</h3><p>在Go语言中，可以将一个命名结构体当作另一个结构体类型的匿名成员使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">type Person struct &#123;</span><br><span class="line">   name string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Student struct &#123;</span><br><span class="line">   number string</span><br><span class="line">   person Person</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">   s := &amp;Student&#123;</span><br><span class="line">      number: &quot;1&quot;,</span><br><span class="line">      person: Person&#123;</span><br><span class="line">         name: &quot;pigeon&quot;,</span><br><span class="line">      &#125;,</span><br><span class="line">   &#125;</span><br><span class="line">   fmt.Printf(&quot;Student %s&#x27;s name is %s\n&quot;, s.number, s.person.name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student 1&#x27;s name is pigeon</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-接口嵌套接口（interface-interface）"><a href="#2-接口嵌套接口（interface-interface）" class="headerlink" title="2.接口嵌套接口（interface,interface）"></a>2.接口嵌套接口（interface,interface）</h3><p>在Go语言中，可以通过接口与接口之间的嵌套定义出新的接口。但只有实现接口中所有的方法，包括嵌入接口的方法，才算实现了接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">type Name interface &#123;</span><br><span class="line">   WriteName(name string)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Number interface &#123;</span><br><span class="line">   WriteNumber(number string)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Person interface &#123;</span><br><span class="line">   Name</span><br><span class="line">   Number</span><br><span class="line">   Hello()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type person struct &#123;</span><br><span class="line">   name   string</span><br><span class="line">   number string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (p *person) WriteName(name string) &#123;</span><br><span class="line">   p.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (p *person) WriteNumber(number string) &#123;</span><br><span class="line">   p.number = number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (p person) Hello() &#123;</span><br><span class="line">   fmt.Println(&quot;hello&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">   p := person&#123;&#125;</span><br><span class="line">   fmt.Println(&quot;Person:&quot;, p.name, p.number)</span><br><span class="line">   p.WriteName(&quot;pigeon&quot;)</span><br><span class="line">   p.WriteNumber(&quot;1&quot;)</span><br><span class="line">   p.Hello()</span><br><span class="line">   fmt.Println(&quot;Person:&quot;, p.name, p.number)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person:</span><br><span class="line">hello           </span><br><span class="line">Person: pigeon 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在结构体中内嵌接口-struct-interface"><a href="#3-在结构体中内嵌接口-struct-interface" class="headerlink" title="3.在结构体中内嵌接口(struct,interface)"></a>3.在结构体中内嵌接口(struct,interface)</h3><p>在go源码中能经常看到这种嵌套方式，结构体内嵌接口，要满足接口的赋值对象实现了该接口的所有方法。</p>
+<p>当初始化结构体Person时，需要传入一个实现接口Hello的结构体赋值，定义了hello结构体。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">type Hello interface &#123;</span><br><span class="line">   Hello()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Person struct &#123;</span><br><span class="line">   Name   string</span><br><span class="line">   Number string</span><br><span class="line">   Hello</span><br><span class="line">&#125;</span><br><span class="line">type hello struct &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (h hello) Hello() &#123;</span><br><span class="line">   fmt.Println(&quot;hello&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">   h := hello&#123;&#125;</span><br><span class="line">   p := &amp;Person&#123;&quot;pigeon&quot;, &quot;1&quot;, h&#125;</span><br><span class="line">   p.Hello.Hello()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/04/13/List/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+  </body>
+</html>
