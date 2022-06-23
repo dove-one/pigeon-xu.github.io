@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>鸽子壹</title>
+
+
+
+    <link rel="icon" href="/pigeon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 6.1.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            鸽子壹.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about">About</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                *Untitled
+            
+            
+        </div>
+        <span class="post-date">
+            Jun 23, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h3 id="1-Linux指令"><a href="#1-Linux指令" class="headerlink" title="1.Linux指令"></a>1.Linux指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ll /proc/PID 查看进程所在文件夹</span><br><span class="line">chmod +x usual_data_svc  给新换的包 添加权限  添加完 ll查看权限</span><br><span class="line">ps -ef | grep usual_data_svc  查看正在运行的进出</span><br><span class="line">killall usual_data_svc 杀掉之前进程</span><br><span class="line">补：cpu和内存指令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-基本数据结构"><a href="#2-基本数据结构" class="headerlink" title="2.基本数据结构"></a><strong>2.基本数据结构</strong></h3><h4 id="字节和空结构体"><a href="#字节和空结构体" class="headerlink" title="字节和空结构体"></a>字节和空结构体</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">unsafe.Sizeof() 返回对象的字节数</span><br><span class="line">int 8</span><br><span class="line">int8 1 int16 2 int32 4 int64 8</span><br><span class="line">指针字节8</span><br><span class="line">空结构体有地址没长度</span><br><span class="line">独立的空结构体指向同一个地址（zerobase）</span><br><span class="line">1.空结构体的地址均相同（不被包含在其他结构体中）</span><br><span class="line">2.空结构体主要是为了节约内存</span><br><span class="line">  ①结合map（只想要键不想要值 hashset）</span><br><span class="line">   hashset //Key:null 有k无v</span><br><span class="line">   m := map[string]struct&#123;&#125;&#123;&#125;</span><br><span class="line">   m[&quot;a&quot;] = struct&#123;&#125;&#123;&#125;</span><br><span class="line">  ②结合channel（只想发信号不想携带信息 纯信号）</span><br><span class="line">   a:= make(chan struct&#123;&#125;)</span><br><span class="line">总结：</span><br><span class="line">1.go中部分数据的长度与系统字节有关（32 4 64 8）</span><br><span class="line">2.空结构体不占用空间</span><br><span class="line">3.空结构体与map结合可以实现hashset</span><br><span class="line">4.空结构体与channel结合可以当作纯信号</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">type stringStruct struct &#123;</span><br><span class="line">	str unsafe.Pointer //指针 8字节 </span><br><span class="line">	len int            //int 8字节</span><br><span class="line">&#125;</span><br><span class="line">字符串类型16字节（8+8）</span><br><span class="line">Data指针指向底层Byte数组</span><br><span class="line">len表示Byte数组的长度而不是字符串 </span><br><span class="line">（对字符串使用len方法得到的是字节数不是字符数）</span><br><span class="line"></span><br><span class="line">* s=string([]rune(s)[:n])</span><br><span class="line">(先转为rune数组进行切分再转为string)</span><br><span class="line">func main() &#123;</span><br><span class="line">	a := &quot;鸽子1&quot;</span><br><span class="line">	s := string([]rune(a)[:3])</span><br><span class="line">	println(s)</span><br><span class="line">&#125;</span><br><span class="line">输出：鸽子1</span><br><span class="line"></span><br><span class="line">type byte = uint8</span><br><span class="line">type rune = int32</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type slice struct &#123;</span><br><span class="line">	array unsafe.Pointer</span><br><span class="line">	len   int</span><br><span class="line">	cap   int</span><br><span class="line">&#125;</span><br><span class="line">切片类型24字节（8+8+8）</span><br><span class="line">切片扩容逻辑：</span><br><span class="line">1.如果新申请容量比两倍原有容量大，那么扩容后容量大小为新申请容量</span><br><span class="line">2.如果原有slice长度小于1024，那么每次就扩容为原来的2 倍</span><br><span class="line">3.如果原slice长度大于等于1024，那么每次扩容就扩为原来的1.25倍</span><br><span class="line"></span><br><span class="line">切片扩容时，并发不安全，注意切片并发要加锁</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">Go中的map是一个指针，占用8个字节，指向hmap结构体</span><br><span class="line"></span><br><span class="line">1.开放寻址法</span><br><span class="line">2.拉链法</span><br><span class="line"></span><br><span class="line">type hmap struct &#123;</span><br><span class="line">    count     int </span><br><span class="line">    // 代表哈希表中的元素个数，调用len(map)时，返回的就是该字段值。</span><br><span class="line">    flags     uint8 </span><br><span class="line">    // 状态标志（是否处于正在写入的状态等）</span><br><span class="line">    B         uint8  </span><br><span class="line">    // buckets（桶）的对数</span><br><span class="line">    // 如果B=5，则buckets数组的长度 = 2^B=32，意味着有32个桶</span><br><span class="line">    noverflow uint16 </span><br><span class="line">    // 溢出桶的数量</span><br><span class="line">    hash0     uint32 </span><br><span class="line">    // 生成hash的随机数种子</span><br><span class="line">    buckets    unsafe.Pointer </span><br><span class="line">    // 指向buckets数组的指针，数组大小为2^B，如果元素个数为0，它为nil。</span><br><span class="line">    oldbuckets unsafe.Pointer </span><br><span class="line">    // 如果发生扩容，oldbuckets是指向老的buckets数组的指针，老的buckets数组大小是新的buckets的1/2;非扩容状态下，它为nil。</span><br><span class="line">    nevacuate  uintptr        </span><br><span class="line">    // 表示扩容进度，小于此地址的buckets代表已搬迁完成。</span><br><span class="line">    extra *mapextra </span><br><span class="line">    // 存储溢出桶，这个字段是为了优化GC扫描而设计的，下面详细介绍</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">// A bucket for a Go map.</span><br><span class="line">type bmap struct &#123;</span><br><span class="line">	tophash [bucketCnt]uint8 //bucketCnt = 8</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">初始化 1.make 2.字面量</span><br><span class="line">字面量初始化：①当元素少于25时，转化为简单赋值（调用make）</span><br><span class="line">             ②当元素多于25时，转化为循环赋值 </span><br><span class="line">             （声明map，kv两个数组，for循环赋值）</span><br><span class="line"></span><br><span class="line">·map的访问：计算桶号</span><br><span class="line">k+hash0 -&gt;haher(hash函数)-&gt;hash值</span><br><span class="line">根据b值取hash值二级制的后n位来确定桶号</span><br><span class="line">·map的访问：匹配</span><br><span class="line">tohash()取hash值二级制高八位计算tohash(十六进制)</span><br><span class="line">再去tohash数组遍历查对应的k是否对应-&gt;v</span><br><span class="line">如果找不到看overflow溢出指针去溢出桶找-&gt;V</span><br><span class="line">如果都没有则k对应v不存在 访问结束</span><br><span class="line"></span><br><span class="line">·map的写入，同上</span><br><span class="line">如果没有找到就插入新值</span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">1.go语言使用拉链法实现了hashmap</span><br><span class="line">2.每一个桶中存储键哈希的前8位</span><br><span class="line">3.桶超过8个数据，就会存储到溢出桶中</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="map扩容"><a href="#map扩容" class="headerlink" title="map扩容"></a>map扩容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">map的扩容</span><br><span class="line">1.map溢出桶太多时会导致严重的性能下降</span><br><span class="line">2.runtime.mapassign()可能会出发扩容的情况：</span><br><span class="line">  ①装载因子超过6.5(平均每个槽6.5个key)</span><br><span class="line">  ②使用了太多溢出桶(溢出桶超过了普通桶)</span><br><span class="line">  (装载因子 = 哈希表存储的元素个数/桶个数)</span><br><span class="line">  </span><br><span class="line">  Go 官方发现：装载因子越大，填入的元素越多，空间利用率就越高，但发生哈希冲突的几率就变大。根据测试结果和讨论，Go 官方取了一个相对适中的值，把 Go 中的 map 的负载因子硬编码为 6.5</span><br><span class="line">  </span><br><span class="line">map的扩容类型</span><br><span class="line">1.等量扩容：数据不多但是溢出桶太多了(整理)</span><br><span class="line">2.翻倍扩容：数据太多了</span><br><span class="line"></span><br><span class="line">map扩容：步骤1</span><br><span class="line">1.创建一组新通</span><br><span class="line">2.oldbuckets指向原有的桶数组</span><br><span class="line">3.buckets指向新的桶数组</span><br><span class="line">4.map标记为扩容状态</span><br><span class="line">map扩容：步骤2</span><br><span class="line">1.将所有的数据从旧桶驱逐道新桶</span><br><span class="line">2.采用渐进式驱逐</span><br><span class="line">3.每次操作一个旧桶时，将旧桶数据驱逐到新桶</span><br><span class="line">4.读取时不进行驱逐，只判断读取新桶还是旧桶</span><br><span class="line">map扩容：步骤3</span><br><span class="line">1.所以的旧桶驱逐完成后</span><br><span class="line">2.oldbuckets回收</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.装载系数或者溢出桶的增加，会触发map扩容</span><br><span class="line">2.&quot;扩容&quot;可能斌不是增加桶数，而是整理</span><br><span class="line">3.map扩容采用渐进式，桶被操作时才会重新分配</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">type iface struct &#123;</span><br><span class="line">	tab  *itab</span><br><span class="line">	data unsafe.Pointer</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type itab struct &#123;</span><br><span class="line">	inter *interfacetype</span><br><span class="line">	_type *_type</span><br><span class="line">	hash  uint32 </span><br><span class="line">	_     [4]byte</span><br><span class="line">	fun   [1]uintptr </span><br><span class="line">&#125;</span><br><span class="line">接口值的底层表示</span><br><span class="line">1.接口数据使用runtime.iface表示</span><br><span class="line">2.iface记录了数据的地址</span><br><span class="line">3.iface中也记录了接口类型信息和实现的方法</span><br><span class="line"></span><br><span class="line">(Go接口是隐式接口)</span><br><span class="line">Go隐式接口特点</span><br><span class="line">1.只要实现接口的所有方法，就是自动实现接口</span><br><span class="line">2，可以在不修改代码的情况下抽象出新的接口</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="结构体和指针实现接口"><a href="#结构体和指针实现接口" class="headerlink" title="结构体和指针实现接口"></a>结构体和指针实现接口</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>结构体实现接口</th>
+<th align="center">结构体指针实现接口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>结构体初始化变量</td>
+<td>通过</td>
+<td align="center">不通过</td>
+</tr>
+<tr>
+<td>结构体指针初始化变量</td>
+<td>通过</td>
+<td align="center">通过</td>
+</tr>
+</tbody></table>
+<p>（通过结构体实体实现接口，会自动帮你实现结构体指针实现接口的方法）</p>
+<h4 id="空接口"><a href="#空接口" class="headerlink" title="空接口"></a>空接口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type eface struct &#123;</span><br><span class="line">	_type *_type</span><br><span class="line">	data  unsafe.Pointer</span><br><span class="line">&#125;</span><br><span class="line">空接口可以承载任何数据</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="nil-空接口，空结构体的区别"><a href="#nil-空接口，空结构体的区别" class="headerlink" title="nil,空接口，空结构体的区别"></a>nil,空接口，空结构体的区别</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// nil is a predeclared identifier representing the zero value for a</span><br><span class="line">// pointer, channel, func, interface, map, or slice type.</span><br><span class="line">var nil Type // Type must be a pointer, channel, func, interface, map, or slice type</span><br><span class="line"></span><br><span class="line">nil</span><br><span class="line">1.nil是空，并不一定是&quot;空指针&quot;</span><br><span class="line">2.nil是6种类型的&quot;零值&quot;</span><br><span class="line">3.每种类的nil是不同的，无法比较</span><br><span class="line"></span><br><span class="line">空结构体</span><br><span class="line">1.空结构体是Go中非常特殊的类型</span><br><span class="line">2.空结构体的值不是nil</span><br><span class="line">3.空结构体的指针也不是nil，但是都相同(zerobase)</span><br><span class="line"></span><br><span class="line">空接口</span><br><span class="line">func main() &#123;</span><br><span class="line">	var a interface&#123;&#125;</span><br><span class="line">	fmt.Println(a ==nil)</span><br><span class="line">	var c *int</span><br><span class="line">	a = c </span><br><span class="line">	//a:eface&#123;&#125; -&gt; _type = *int</span><br><span class="line">	fmt.Println(c ==nil)</span><br><span class="line">	fmt.Println(a ==nil)</span><br><span class="line">&#125;</span><br><span class="line">输出 true true false</span><br><span class="line">1.空接口不一定是&quot;nil接口&quot;</span><br><span class="line">2.两个属性都是nil才是nil接口（类型，数据）</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.nil是多个类型的零值，或者空值</span><br><span class="line">2.空结构体的指针和值都不是nil</span><br><span class="line">3.空接口零值是nil，一旦有了类型信息就不是nil</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">内存对齐：提高内存操作效率，有利于内存原子性</span><br><span class="line"></span><br><span class="line">对齐系数</span><br><span class="line">1.为了方便内存对齐，Go提供给了对齐系数</span><br><span class="line">unsafe.Alignof()</span><br><span class="line">2.对齐系数的含义是：变量的内存地址必须被对齐系数整除</span><br><span class="line">3.如果对齐系数为4，表示变量内存地址必须是4的倍数</span><br><span class="line">(64位平台最大对齐系数是8，32位平台最大对齐系数是4)</span><br><span class="line">(string，slice，map的内存长度是16，24，8 对齐系数是8，8，8)</span><br><span class="line"></span><br><span class="line">结构体对齐*</span><br><span class="line">1.结构体对齐分内存对齐和结构体之间对齐</span><br><span class="line">2.内存对齐：考虑成员大小和成员的对齐系数</span><br><span class="line">3.结构体长度填充：考虑自身对齐系数和系统字长</span><br><span class="line"></span><br><span class="line">结构体内部对齐</span><br><span class="line">1.指的是结构体内部成员的相对位置(偏移量)</span><br><span class="line">2.每个成员的偏移量是自身大小与其对齐系数较小值的倍数</span><br><span class="line"></span><br><span class="line">结构体长度填充</span><br><span class="line">1.指的是结构体通过增加长度，对齐系统字长</span><br><span class="line">2.结构体长度是最大成员长度与系统字长较小的整数倍</span><br><span class="line"></span><br><span class="line">节约结构体空间</span><br><span class="line">可以尝试通过调整成员顺序，节约空间</span><br><span class="line">type Demo1 struct &#123; //32 8</span><br><span class="line">	a bool         //1 1  </span><br><span class="line">	b string       //16 8</span><br><span class="line">	c int16        //2 2</span><br><span class="line">&#125;</span><br><span class="line">type Demo2 struct &#123; //24 8</span><br><span class="line">	a bool</span><br><span class="line">	b string</span><br><span class="line">	c int16</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">*结构体的对齐系数是其成员的最大对齐系数</span><br><span class="line"></span><br><span class="line">空结构体的对齐</span><br><span class="line">1.空结构体单独出现时，地址为zerobase</span><br><span class="line">2.空结构体出现在结构体中时，地址跟随前一个变量</span><br><span class="line">3.空结构体出现在结构体末尾时，需要补齐字长</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.提高内存操作效率，变量之间需要内存对齐</span><br><span class="line">2.基本类型考虑对齐系数</span><br><span class="line">3.结构体既需要内存对齐，又需要外部填充对齐</span><br><span class="line">4.空结构体作为最后一个成员，需要填充对齐</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-Goroutine协程"><a href="#3-Goroutine协程" class="headerlink" title="3.Goroutine协程"></a><strong>3.Goroutine协程</strong></h3><h4 id="协程和线程-g-m结构体"><a href="#协程和线程-g-m结构体" class="headerlink" title="协程和线程(g,m结构体)"></a>协程和线程(g,m结构体)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1.协程的底层结构(g)</span><br><span class="line">runtime中，协程的本质是一个g结构体</span><br><span class="line">·stack：堆栈地址</span><br><span class="line">·gobuf：目前程序运行现场</span><br><span class="line">·atomicstatus：协程状态</span><br><span class="line"> </span><br><span class="line">type stack struct &#123;</span><br><span class="line">	lo uintptr //指向协程栈的低地址</span><br><span class="line">	hi uintptr //   ————   高地址</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type gobuf struct &#123;</span><br><span class="line">	sp   uintptr   //StackPointer栈指针</span><br><span class="line">	pc   uintptr   //ProgramCounter程序计数器</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">2.线程的抽象</span><br><span class="line">runtime中将操作系统线程抽象为m结构体</span><br><span class="line">·g0：g0协程，操作调度器</span><br><span class="line">·curg：current g，目前显存运行的g</span><br><span class="line">·mOS：操作系统线程信息</span><br><span class="line"> </span><br><span class="line">总结</span><br><span class="line">1.协程的本质 是一个g结构体</span><br><span class="line">2.g结构体记录了协程栈、PC信息</span><br><span class="line">3.最简情况下，线程执行标准调度循环，执行协程</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="线程循环"><a href="#线程循环" class="headerlink" title="线程循环"></a>线程循环</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.操作系统并不知道Goroutine的存在</span><br><span class="line">2.操作系统线程执行一个调度循环，顺序执行Goroutine</span><br><span class="line">3.调度循环非常像线程池</span><br><span class="line"></span><br><span class="line">schedule-&gt; execute-&gt; G.fn()-&gt; goexit</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="GMP调度模型"><a href="#GMP调度模型" class="headerlink" title="*GMP调度模型"></a>*GMP调度模型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">线程循环的问题</span><br><span class="line">1.协程顺序指向，无法并发</span><br><span class="line">2.多线程并发时，会抢夺协程队列的全局锁</span><br><span class="line"></span><br><span class="line">p结构体</span><br><span class="line">type p struct &#123;</span><br><span class="line">	m        muintptr   </span><br><span class="line">	runqhead uint32</span><br><span class="line">	runqtail uint32</span><br><span class="line">	runq     [256]guintptr</span><br><span class="line">	runnext  guintptr</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">P的作用</span><br><span class="line">1.M与G之间的中介</span><br><span class="line">2.P持有一些G，使每次获取G的时候不用从全局找</span><br><span class="line">3.大大减少了并发冲突的情况</span><br><span class="line"></span><br><span class="line">窃取式工作分配机构</span><br><span class="line">1.如果在本地或者全局队列中找不到G</span><br><span class="line">2.去别的P中&quot;偷&quot;</span><br><span class="line">3.增强了线程的利用率</span><br><span class="line"></span><br><span class="line">新建协程</span><br><span class="line">1.随机寻找P</span><br><span class="line">2.将新协程放入P的runnext(插队)</span><br><span class="line">3.若P本地队列满，放入全局队列</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="协程饥饿问题"><a href="#协程饥饿问题" class="headerlink" title="协程饥饿问题"></a>协程饥饿问题</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">切换时机</span><br><span class="line">1.主动挂起(runtime.gopark())</span><br><span class="line">业务方法-&gt; gopark()-&gt; schedule()</span><br><span class="line">2.系统调用完成时</span><br><span class="line">业务方法-&gt; entersyscall()-&gt; 系统调用-&gt; exitsyscall()-&gt;</span><br><span class="line">schedule()</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.如果协程顺序执行，会有饥饿问题</span><br><span class="line">2.协程执行中间，将协挂起，执行其他协程</span><br><span class="line">3.完成系统调用时挂起，也可以主动挂起</span><br><span class="line">4.防止全局队列饥饿，本地队列随机抽取全局队列</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="抢占式调度解决了什么问题"><a href="#抢占式调度解决了什么问题" class="headerlink" title="抢占式调度解决了什么问题"></a>抢占式调度解决了什么问题</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">runtime.morestack()</span><br><span class="line">1.morestack的本意是检查协程栈是否有足够空间</span><br><span class="line">2.调用方法时，会被编译器插入morestack()</span><br><span class="line"></span><br><span class="line">标记抢占</span><br><span class="line">1.系统监控到Goroutine运行超过10ms</span><br><span class="line">2.将g.stackguard0置于0xfffffade</span><br><span class="line"> </span><br><span class="line">抢占</span><br><span class="line">执行morestack()时判断是否被抢占</span><br><span class="line">如果被抢占，回到schedule()</span><br><span class="line"></span><br><span class="line">基于信号的抢占式调度(线程信号)</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.基于系统调用和主动挂起，协程可能无法调度</span><br><span class="line">2.基于协作的抢占式调度：业务主动调用morestack()</span><br><span class="line">3.基于信号的抢占式调度：强制线程调用doSigPreempt()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="协程过多"><a href="#协程过多" class="headerlink" title="协程过多"></a>协程过多</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">处理方案</span><br><span class="line">1.优化业务逻辑</span><br><span class="line">2.利用channel的缓存区</span><br><span class="line">3.协程池</span><br><span class="line">4.调整系统资源</span><br><span class="line"></span><br><span class="line">利用channel的缓存区</span><br><span class="line">·channel缓存机构</span><br><span class="line">·启动协程前，向channel送入一个空结构体</span><br><span class="line">·协程结束，取出一个空结构体</span><br><span class="line"></span><br><span class="line">协程池(tunny)</span><br><span class="line">·预创建一定数量的协程</span><br><span class="line">·将任务送入协程池队列</span><br><span class="line">·协程池不断去除可用协程，执行任务</span><br><span class="line"></span><br><span class="line">慎用协程池</span><br><span class="line">1.Go语言的线程，已经相当于池化了</span><br><span class="line">2.二级池化会增加系统复杂度</span><br><span class="line">3.Go语言的初衷式希望协程即用即毁，不要池化</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-锁"><a href="#4-锁" class="headerlink" title="4.锁"></a>4.锁</h3><h4 id="atomic操作"><a href="#atomic操作" class="headerlink" title="atomic操作"></a>atomic操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">atomic操作</span><br><span class="line">·原子操作时一种硬件层面加锁的机制</span><br><span class="line">·保证操作一个变量的时候，其他协程/线程无法访问</span><br><span class="line">·只能用于简单变量的简单操作</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="sema锁"><a href="#sema锁" class="headerlink" title="sema锁"></a>sema锁</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">sema锁</span><br><span class="line">·也叫做信号量锁/信号锁</span><br><span class="line">·核心是一个uint32值，含义是同时可并发的数量</span><br><span class="line">·每一个sema锁都对应一个SemaRoot结构体</span><br><span class="line">·SemaRoot中有一个平衡二叉树用于协程排队</span><br><span class="line"></span><br><span class="line">type semaRoot struct &#123;</span><br><span class="line">	lock  mutex</span><br><span class="line">	treap *sudog // root of balanced tree of unique waiters.</span><br><span class="line">	nwait uint32 // Number of waiters. Read w/o the lock.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sema操作(uint32&gt; 0)</span><br><span class="line">1.获取锁：uint32减一，获取成功</span><br><span class="line">2.释放锁：uint32加一，释放成功</span><br><span class="line"></span><br><span class="line">sema操作(uint32==0)</span><br><span class="line">1.获取锁：协程休眠，进入堆等待</span><br><span class="line">2.释放锁：从堆树中取出一个协程，唤醒</span><br><span class="line">（****6-2 重新看一遍）</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.原子操作是一种硬件层面加锁的机制</span><br><span class="line">2.数据类型和操作类型有限制</span><br><span class="line">3.sema锁是runtime的常用工具</span><br><span class="line">4.sema经常被用作休眠队列</span><br></pre></td></tr></table></figure>
+
+<p><strong>TOTD</strong></p>
+<h3 id="5-Channel"><a href="#5-Channel" class="headerlink" title="5.Channel"></a><strong>5.Channel</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">channel基本用法</span><br><span class="line">· ch&lt;-x  //发送数据x</span><br><span class="line">· x=&lt;-ch //接收数据，赋给x</span><br><span class="line">· &lt;-ch   //接收数据，并丢弃</span><br></pre></td></tr></table></figure>
+
+<h4 id="内存与通信"><a href="#内存与通信" class="headerlink" title="内存与通信"></a>内存与通信</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;不要通过共享内存的方式进行通信&quot;</span><br><span class="line">&quot;而是应该通过通信的方式共享内存&quot;</span><br><span class="line"></span><br><span class="line">why</span><br><span class="line">1.避免协程竞争和数据冲突的问题</span><br><span class="line">2.更高级的抽象，降低开发难度，增加程序可读性</span><br><span class="line">3.模块之间更容易解耦，增强扩展性和可维护性</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="底层结构"><a href="#底层结构" class="headerlink" title="底层结构"></a>底层结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">type hchan struct &#123;</span><br><span class="line">	qcount   uint           </span><br><span class="line">	dataqsiz uint           </span><br><span class="line">	buf      unsafe.Pointer </span><br><span class="line">	elemsize uint16</span><br><span class="line">	closed   uint32</span><br><span class="line">	elemtype *_type </span><br><span class="line">	sendx    uint   // send index</span><br><span class="line">	recvx    uint   // receive index</span><br><span class="line">	recvq    waitq  // list of recv waiters</span><br><span class="line">	sendq    waitq  // list of send waiters</span><br><span class="line"></span><br><span class="line">	lock mutex</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type waitq struct &#123;</span><br><span class="line">	first *sudog</span><br><span class="line">	last  *sudog</span><br><span class="line">&#125; //链表</span><br><span class="line"></span><br><span class="line">·缓冲区(环形缓存 Ring Buffer)</span><br><span class="line"> qcount   uint           </span><br><span class="line"> dataqsiz uint           </span><br><span class="line"> buf      unsafe.Pointer </span><br><span class="line"> elemsize uint16</span><br><span class="line"> elemtype *_type </span><br><span class="line">环形缓存可以大幅降低GC的开销</span><br><span class="line"></span><br><span class="line">·两个队列(Send Queue/Receive ~)</span><br><span class="line"> sendx    uint   </span><br><span class="line"> sendq    waitq  </span><br><span class="line"> </span><br><span class="line"> recvx    uint   </span><br><span class="line"> recvq    waitq  </span><br><span class="line"> </span><br><span class="line">·互斥锁(Mutex)</span><br><span class="line">1.互斥锁并不是排队发送/接收数据</span><br><span class="line">2.互斥锁保护的hchan结构体本身</span><br><span class="line">3.Channel并不是无锁的</span><br><span class="line"></span><br><span class="line">·状态值(closed)</span><br><span class="line"> ·0为开启</span><br><span class="line"> ·1为关闭</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">&quot;Channel是go的一等公民&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="c-lt-和-lt-c关键字"><a href="#c-lt-和-lt-c关键字" class="headerlink" title="c&lt;- 和&lt;-c关键字"></a>c&lt;- 和&lt;-c关键字</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">·c&lt;-和 &lt;-c关键字是一个语法糖</span><br><span class="line"></span><br><span class="line">·编译阶段，会把c&lt;-转化为runtime.chansend1()</span><br><span class="line">·chansend1()会调用chansend()方法</span><br><span class="line"></span><br><span class="line">·编译阶段，i&lt;-c 转化为runtime.chanrecv1()</span><br><span class="line">·编译阶段，i,ok&lt;-c转为runtime.chanrecv2()</span><br><span class="line">·最后会调用chanrecv()方法</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Channel发送数据的底层原理"><a href="#Channel发送数据的底层原理" class="headerlink" title="Channel发送数据的底层原理"></a>Channel发送数据的底层原理</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Channel发送的情况</span><br><span class="line">1.直接发送</span><br><span class="line">2.放入缓存</span><br><span class="line">3.休眠等待</span><br><span class="line"></span><br><span class="line">直接发送(原理)</span><br><span class="line">1.发送数据前，已经有G在休眠等待接收</span><br><span class="line">2.此时缓存肯定是空的，不用考虑缓存</span><br><span class="line">3.将数据直接拷贝给G的结束变量，唤醒G</span><br><span class="line">直接发送(实现)</span><br><span class="line">1.从队列里取出一个等待接收的G</span><br><span class="line">2.将数据直接拷贝到接收变量中</span><br><span class="line">3.唤醒G</span><br><span class="line"></span><br><span class="line">放入缓存(原理)</span><br><span class="line">1.没有G在休眠等待，但是有缓存空间</span><br><span class="line">2.将数据放入缓存</span><br><span class="line">放入缓存(实现)</span><br><span class="line">1.获取可存入的缓存地址</span><br><span class="line">2.存入数据</span><br><span class="line">3.维护索引</span><br><span class="line"></span><br><span class="line">休眠等待(原理)</span><br><span class="line">1.没有G在休眠等待，而且没有缓存或满了</span><br><span class="line">2.自己进入发送队列，休眠等待</span><br><span class="line">休眠等待(实现)</span><br><span class="line">1.把自己包装成sudog</span><br><span class="line">2.sudug放入sendq队列</span><br><span class="line">3.休眠并解锁</span><br><span class="line">4.被唤醒后，数据已经被取走，维护其他数据</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.直接发送时，将数据直接拷贝到目标变量</span><br><span class="line">2.放入缓存时，将数据放入环形缓存，成功放回</span><br><span class="line">3.休眠等待时，将自己包装后放入sendq，休眠</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Channel接收数据的底层原理"><a href="#Channel接收数据的底层原理" class="headerlink" title="Channel接收数据的底层原理"></a>Channel接收数据的底层原理</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">Channel接收的情况</span><br><span class="line">1.有等待的G，从G接收</span><br><span class="line">2.有等待的G，从缓存接收</span><br><span class="line">3.接收缓存</span><br><span class="line">4.阻塞接收</span><br><span class="line"></span><br><span class="line">有等待的G，从G接收(原理)</span><br><span class="line">1.接受数据前,已经有G在休眠等待发送</span><br><span class="line">2.而且这个Channel没有缓存</span><br><span class="line">3.将数据直接从G拷贝过来，唤醒G</span><br><span class="line">有等待的G，从G接收(实现)</span><br><span class="line">1.判断有G在发送队列等待，进入recv()</span><br><span class="line">2.判断次Channel无缓存</span><br><span class="line">3.直接从等待的G中取走数据，唤醒G</span><br><span class="line"></span><br><span class="line">有等待的G，从缓存接收(原理)</span><br><span class="line">1.接收数据前,已经有G在休眠等待发送</span><br><span class="line">2.而且这个Channel有缓存</span><br><span class="line">3.从缓存取走一个数据</span><br><span class="line">4.将休眠G的数据放进缓存,唤醒G</span><br><span class="line">有等待的G，从缓存接收(实现)</span><br><span class="line">1.判断有G在发送队列等待，进入recv()</span><br><span class="line">2.判断此Channel有缓存</span><br><span class="line">3.从缓存中取走一个数据</span><br><span class="line">4.将G的数据放入缓存，唤醒G</span><br><span class="line"></span><br><span class="line">接收缓存(原理)</span><br><span class="line">1.没有G在休眠等待发送，但是缓存有内容</span><br><span class="line">2.从缓存取走数据</span><br><span class="line">接收缓存(实现)</span><br><span class="line">1.判断没有G在发送队列等待</span><br><span class="line">2.判断此Channel有缓存</span><br><span class="line">3.从缓存中取走一个数据</span><br><span class="line"></span><br><span class="line">阻塞接收(原理)</span><br><span class="line">1.没有G在休眠等待，而且没有缓存或缓存空间</span><br><span class="line">2.自己进入接收队列，休眠等待</span><br><span class="line">阻塞接收(实现)</span><br><span class="line">1.判断没有G在发送队列等待</span><br><span class="line">2.判断此Channel无缓存</span><br><span class="line">3.将自己包装成sudog</span><br><span class="line">4.sudog放入接收等待队列，休眠</span><br><span class="line">5.唤醒时，发送的G已经把数据拷贝到位</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.有等待的G，且无缓存时，从G接收</span><br><span class="line">2.有等待的G，且有缓存时，从缓存接收</span><br><span class="line">3.无等待的G，且缓存有数据，从缓存接收</span><br><span class="line">4.无等待的G，且缓存无数据，等待喂数据</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="非阻塞的Channel-select-timer"><a href="#非阻塞的Channel-select-timer" class="headerlink" title="非阻塞的Channel(select,timer)"></a>非阻塞的Channel(select,timer)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">select原理</span><br><span class="line">·同时存在接收，发送，默认路径</span><br><span class="line">·首先查看是否有可以即时执行的case</span><br><span class="line">·没有的话，有default，走default</span><br><span class="line">·没有default,把自己注册在所有的channel中，休眠等待</span><br><span class="line"></span><br><span class="line">timer</span><br><span class="line"></span><br><span class="line">type Timer struct &#123;</span><br><span class="line">	C &lt;-chan Time</span><br><span class="line">	r runtimeTimer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-TCP网路编程"><a href="#6-TCP网路编程" class="headerlink" title="6.TCP网路编程"></a>6.TCP网路编程</h3><h4 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">IO模型指的是同时操作Socket的方案</span><br><span class="line">·阻塞</span><br><span class="line">·非阻塞</span><br><span class="line">·多路复用</span><br><span class="line"></span><br><span class="line">阻塞IO</span><br><span class="line">1.同步读写Socket时，线程陷入内核态</span><br><span class="line">2.当读写成功后，切换回用户态，继续执行</span><br><span class="line">3.优点：开发难度小，代码简单</span><br><span class="line">4.缺点：内核态切换开销大</span><br><span class="line"></span><br><span class="line">非阻塞IO</span><br><span class="line">1.如果暂时无法收发数据，会返回错误</span><br><span class="line">2.应用会不断轮询，直到Socket可以读写</span><br><span class="line">3.优点：不会陷入内核态，自由度高</span><br><span class="line">4.缺点：需要自旋轮询</span><br><span class="line"></span><br><span class="line">多路复用(linux epoll)</span><br><span class="line">epoll=event poll事件池</span><br><span class="line">1.注册多个Socket事件</span><br><span class="line">2.调用epool，当有事件发生，返回</span><br><span class="line">3.优点：提供了事件列表，不需要查询各个Socket</span><br><span class="line">4.缺点：开发难度大，逻辑复杂</span><br><span class="line">5.Mac:kqueue; Windows:IOCP</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.操作系统提供了Socket作为TCP通信的抽象</span><br><span class="line">2.IO模型指的是操作Socket的方案</span><br><span class="line">3.阻塞模型最利于业务编写，但是性能差</span><br><span class="line">4.多路复用性能好，但业务编写麻烦</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="go抽象epoll"><a href="#go抽象epoll" class="headerlink" title="go抽象epoll"></a>go抽象epoll</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">阻塞模型+多路复用</span><br><span class="line">·在底层使用操作系统的多路复用IO</span><br><span class="line">·在协程层次使用阻塞模型</span><br><span class="line">·阻塞协程时，休眠协程</span><br><span class="line"></span><br><span class="line">epoll抽象层</span><br><span class="line">epoll抽象层是为了统一各个操作系统对多路复用器的实现</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>TODO 8-3 04:38</p>
+<h3 id="7-内存模型与垃圾回收"><a href="#7-内存模型与垃圾回收" class="headerlink" title="7.内存模型与垃圾回收"></a><strong>7.内存模型与垃圾回收</strong></h3><h4 id="协程栈"><a href="#协程栈" class="headerlink" title="协程栈"></a>协程栈</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Go协程栈的作用</span><br><span class="line">1.协程的执行路径</span><br><span class="line">2.局部变量</span><br><span class="line">3.函数传参</span><br><span class="line">4.函数返回值</span><br><span class="line"></span><br><span class="line">Go协程栈的位置</span><br><span class="line">·Go协程栈位于Go堆内存上</span><br><span class="line">·Go堆内存位于操作系统虚拟内存上</span><br><span class="line"></span><br><span class="line">参数传递</span><br><span class="line">*·Go使用参数拷贝传递(值传递)</span><br><span class="line">·传递结构体时：会拷贝结构体中的全部内容</span><br><span class="line">·传递指针时，会拷贝结构体指针</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">1.协程栈记录了协程的执行线程</span><br><span class="line">2.协程栈还赋值记录局部变量，传递参数和返回值</span><br><span class="line">3.Go使用参数拷贝传递</span><br><span class="line"></span><br><span class="line">思考</span><br><span class="line">协程栈不够大怎么办</span><br><span class="line">局部变量太大-&gt;逃逸分析</span><br><span class="line">栈帧太多-&gt;栈扩容</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">逃逸分析</span><br><span class="line">1.不是所有的变量都能放在协程栈上</span><br><span class="line">2.栈帧回收后，需要继续使用的变量</span><br><span class="line">3.太大的变量</span><br><span class="line"></span><br><span class="line">三种逃逸</span><br><span class="line">·指针逃逸</span><br><span class="line"> 函数返回了对象的指针</span><br><span class="line"> </span><br><span class="line">·空接口逃逸</span><br><span class="line"> 如果函数参数为interface&#123;&#125;</span><br><span class="line"> 函数参数很可能会逃逸</span><br><span class="line"> 因为interface&#123;&#125;类型的函数往往会使用反射</span><br><span class="line"> </span><br><span class="line">·大变量逃逸</span><br><span class="line"> 过大的变量会导致栈空间不足</span><br><span class="line"> 64位机器中，一般超过64kb的变量会逃逸</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="栈扩容"><a href="#栈扩容" class="headerlink" title="栈扩容"></a>栈扩容</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">栈扩容</span><br><span class="line"> 1.Go栈的初始空间为2kb</span><br><span class="line"> 2.在函数调用前判断栈空间(morestack)</span><br><span class="line"> 3.必要时对栈进行扩容</span><br><span class="line"> 4.早期使用分段栈，后期使用连续段</span><br><span class="line"> </span><br><span class="line"> 分段栈(1.13之前使用)</span><br><span class="line"> 优点：没有空间浪费</span><br><span class="line"> 缺点：栈指针会在不连续的空间跳转</span><br><span class="line"> </span><br><span class="line"> 连续栈</span><br><span class="line"> 优点：空间一直连续</span><br><span class="line"> 缺点：伸缩时的开销大</span><br><span class="line"> 当空间不足时扩容，变为原来的2倍</span><br><span class="line"> 当空间使用率不足1/4时缩容，变成原来的1/2</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="堆内存结构"><a href="#堆内存结构" class="headerlink" title="堆内存结构"></a>堆内存结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">操作系统虚拟内存</span><br><span class="line">1.不是Win的&quot;虚拟内存&quot;</span><br><span class="line">2.操作系统给应用提供的虚拟内存空间</span><br><span class="line">3.背后是物理内存，也有可能是磁盘</span><br><span class="line">4.Linux获取虚拟内存：mmap，madvice</span><br><span class="line"></span><br><span class="line">heapArena</span><br><span class="line">1.Go每次申请的虚拟内存单位为64MB</span><br><span class="line">2.最多又4194304个虚拟内存单位(2^20)</span><br><span class="line">3.内存单位也叫heapArena</span><br><span class="line">4.所有的heapArena组成了mheap(Go堆内存)</span><br></pre></td></tr></table></figure>
+
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/04/18/nest/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+  </body>
+</html>
